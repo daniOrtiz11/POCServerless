@@ -30,9 +30,21 @@ func mainMenu() {
 			case 1:
 				CurrentState()
 			case 2:
-				AddCoins()
+				fmt.Println("Coins to save:")
+				stdReader := bufio.NewReader(os.Stdin)
+				sendData, err := stdReader.ReadString('\n')
+				if err != nil {
+					coins := strings.Replace(sendData, "\n", "", -1)
+					AddCoins(coins)
+				}
 			case 3:
-				SubtractCoins()
+				fmt.Println("Coins to subtract:")
+				stdReader := bufio.NewReader(os.Stdin)
+				sendData, err := stdReader.ReadString('\n')
+				if err != nil {
+					coins := strings.Replace(sendData, "\n", "", -1)
+					SubtractCoins(coins)
+				}
 			case 4:
 				CloseConn()
 			default:
@@ -52,7 +64,3 @@ func showOptions() {
 	fmt.Println(closeOption)
 	fmt.Print("> ")
 }
-
-/*
-Sumatorio de valores de objetos JSON
-*/
