@@ -89,28 +89,16 @@ func Lambda(arn string, params string) string {
 		log.Fatal(awsError)
 	}
 	var statusCode float64
-	body := ""
+	var body float64
+	body = 0
 	statusCode = 0
-	for _, value := range mapBody {
-		switch v := value.(type) {
-		case float64:
-			statusCode = value.(float64)
-		case string:
-			body = value.(string)
-		default:
-			println(v)
-			log.Fatal(errorRespAws)
-		}
+	body = mapBody["body"].(float64)
+	statusCode = mapBody["statusCode"].(float64)
+	if statusCode == 200 {
+		resp = fmt.Sprintf("%.2f", body)
+	} else {
+		log.Fatal(awsError)
 	}
-	if statusCode != 0 && body != "" {
-		if statusCode == 200 || statusCode == 201 || statusCode == 202 {
-			resp = body
-		} else {
-			resp = koC
-			fmt.Println(awsError)
-		}
-	}
-
 	return resp
 }
 

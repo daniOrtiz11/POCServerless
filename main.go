@@ -33,17 +33,21 @@ func mainMenu() {
 				fmt.Println("Coins to save:")
 				stdReader := bufio.NewReader(os.Stdin)
 				sendData, err := stdReader.ReadString('\n')
-				if err != nil {
+				if err == nil {
 					coins := strings.Replace(sendData, "\n", "", -1)
 					AddCoins(coins)
+				} else {
+					log.Fatal(err)
 				}
 			case 3:
 				fmt.Println("Coins to subtract:")
 				stdReader := bufio.NewReader(os.Stdin)
 				sendData, err := stdReader.ReadString('\n')
-				if err != nil {
+				if err == nil {
 					coins := strings.Replace(sendData, "\n", "", -1)
 					SubtractCoins(coins)
+				} else {
+					log.Fatal(err)
 				}
 			case 4:
 				CloseConn()

@@ -18,15 +18,27 @@ CurrentState show the current coins in our wallet
 func CurrentState() {
 	coins := Lambda(arnGet, "")
 	if coins != "" {
-		fmt.Println("The wallet have:" + coins)
+		fmt.Println("The wallet have " + coins + " coins")
 	}
 }
 
 /*
 AddCoins add coins to our wallet
+
+
+Coins to save:
+3
+InvalidParameter: 1 validation error(s) found.
+- minimum field size of 1, InvokeInput.FunctionName.
+
+3inserted in your wallet!
+*/
+
+/*
+AddCoins add coins to our wallet
 */
 func AddCoins(coins string) {
-	resp := Lambda(arnAdd, coins)
+	resp := Lambda(arnSet, coins)
 	if resp == okC {
 		AddCoins(coins)
 	} else if resp == koC {
@@ -40,7 +52,7 @@ func AddCoins(coins string) {
 SubtractCoins subtract coins to our wallet
 */
 func SubtractCoins(coins string) {
-	resp := Lambda(arnSub, coins)
+	resp := Lambda(arnSet, coins)
 	if resp == okC {
 		SubtractCoins(coins)
 	} else if resp == koC {
