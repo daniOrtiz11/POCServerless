@@ -24,18 +24,6 @@ func CurrentState() {
 
 /*
 AddCoins add coins to our wallet
-
-
-Coins to save:
-3
-InvalidParameter: 1 validation error(s) found.
-- minimum field size of 1, InvokeInput.FunctionName.
-
-3inserted in your wallet!
-*/
-
-/*
-AddCoins add coins to our wallet
 */
 func AddCoins(coins string) {
 	resp := Lambda(arnSet, coins)
@@ -44,20 +32,6 @@ func AddCoins(coins string) {
 	} else if resp == koC {
 		log.Fatal(errorLambda)
 	} else {
-		fmt.Println(coins + "inserted in your wallet!")
-	}
-}
-
-/*
-SubtractCoins subtract coins to our wallet
-*/
-func SubtractCoins(coins string) {
-	resp := Lambda(arnSet, coins)
-	if resp == okC {
-		SubtractCoins(coins)
-	} else if resp == koC {
-		log.Fatal(errorLambda)
-	} else {
-		fmt.Println(coins + "subtracted in your wallet!")
+		fmt.Println(coins + " inserted in your wallet!")
 	}
 }
