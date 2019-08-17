@@ -10,7 +10,14 @@ import (
 )
 
 func main() {
-	fmt.Println(welcomeMessage)
+	fmt.Println()
+	fmt.Printf(infoColor, "*****************************")
+	fmt.Println()
+	fmt.Printf(infoColor, "**"+welcomeMessage+"**")
+	fmt.Println()
+	fmt.Printf(infoColor, "*****************************")
+	fmt.Println()
+	fmt.Println()
 	mainMenu()
 }
 
@@ -52,8 +59,11 @@ func mainMenu() {
 }
 func showOptions() {
 	fmt.Println(optionsTitle)
-	fmt.Println(option1)
-	fmt.Println(option2)
-	fmt.Println(closeOption)
+	fmt.Printf(strongWhiteColor, option1)
+	fmt.Println()
+	fmt.Printf(strongWhiteColor, option2)
+	fmt.Println()
+	fmt.Printf(strongWhiteColor, closeOption)
+	fmt.Println()
 	fmt.Print("> ")
 }
