@@ -23,7 +23,7 @@ CurrentState show the current coins in our wallet
 func CurrentState() {
 	coins := Lambda(arnGet, "")
 	if coins != "" {
-		fmt.Printf(infoColor, "The wallet have "+coins+" coins")
+		fmt.Printf(infoColor, "The wallet has "+coins+" coins")
 		fmt.Println()
 	}
 }
