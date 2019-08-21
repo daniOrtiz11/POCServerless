@@ -1,6 +1,6 @@
 # POC Serverless-Storage
 
-Project that aims to demonstrate how to achieve persistence within serverless technology in a simple way.
+The aim of this project is to demonstrate how to achieve persistence within serverless technology in a simple way.
 <br/>
 The application is based on a digital wallet in which we are storing coins. It consists of 3 parts:  
 * Interface and frontend: developed with **Golang**.
