@@ -33,10 +33,6 @@ POCServerless
 
 * Tener una cuenta en AWS y obtener sus credenciales (*id* and *secret*).
 
-* Crear un bucket de S3.
-
-* Crear un rol de ejecución en el servicio IAM. Este rol es para la ejecución Lambda. Los servicios se deben permitir son S3 y CloudWatch Logs (solo para debug). 
-
 ### Code prerequisites
 
 * Tener configurado todo el entorno de Go [Go Environment](https://golang.org/doc/code.html#Organization)
@@ -49,9 +45,81 @@ go get github.com/aws/aws-sdk-go
 
 ## AWS Deployment
 
-Add additional notes about how to deploy this on a live system
+1. **Crear un bucket privado de S3.** Importante quedarse con su nombre y su zona, necesistaremos configurarlo en las credenciales. 
+
+2. **Incluir archivo de almacenamiento en S3.** Cargar el archivo [data.json](aws/data.json) dentro del bucket.
+
+3. **Crear un rol de ejecución en el servicio IAM.**  Este rol es para la ejecución Lambda. Los servicios que se deben permitir son S3 y CloudWatch Logs (solo para debug). 
+ 
+4. **Crear las funciones Lambda.** Crear las funciones [saveWallet.js](aws/saveWallet.js) y [getWallet.js](aws/getWallet.js) dentro de Lambda usando el rol creado anteriormente. Importante sustituir el nombre de bucket existente en las funciones por el creado anteriormente.
+
+5. **Sustituir creedenciales.** A parte de nuestro *idkey* y *secretkey* en [credentials.go](credentials.go) también debemos reemplazar los valores de arn de nuestras funciones Lambda y la región donde esten alojadas.
+
+## Running
+```
+MBP-Dani:~ daniortiz$ POCServerless 
+
+*****************************
+**Welcome to POC Serverless**
+*****************************
+
+Choose one of the following options:
+1. View the current status of the wallet
+2. Save coins
+3. Exit
+> 
+```
+```
+> 1
+The wallet has 0.00 coins
+
+Choose one of the following options:
+1. View the current status of the wallet
+2. Save coins
+3. Exit
+> 
+```
+```
+> 2
+Coins to save:
+5
+Saving 5 coins...
+5 coins saved in your wallet!
+
+Choose one of the following options:
+1. View the current status of the wallet
+2. Save coins
+3. Exit
+> 
+```
+```
+> 2
+Coins to save:
+8
+Saving 8 coins...
+8 coins saved in your wallet!
+
+Choose one of the following options:
+1. View the current status of the wallet
+2. Save coins
+3. Exit
+> 
+```
+
+```
+> 1
+The wallet has 13.00 coins
+
+Choose one of the following options:
+1. View the current status of the wallet
+2. Save coins
+3. Exit
+> 3
+See you soon!
+```
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
