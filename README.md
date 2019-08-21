@@ -1,28 +1,28 @@
 # POC Serverless-Storage
 
-Proyecto que tiene como objetivo demostrar cómo conseguir persistencia dentro de la tecnología serverless de una manera sencilla.
+Project that aims to demonstrate how to achieve persistence within serverless technology in a simple way.
 <br/>
-La aplicación consiste en un monedero digital en el cual vamos guardando monedas. Podemos diferenciar 3 partes dentro de la aplicación:   
-* Interfaz y frontend: desarrollado con el lenguaje **Go**.
-* Backend y servicios: usando tecnología serverless implementado en **Amazon Web Services Lambda** en **Node.js**.
-* Base de datos: almacenamiento simple en formato JSON en **Amazon Web Services S3**.
+The application is based on a digital wallet in which we are storing coins. It consists of 3 parts:  
+* Interface and frontend: developed with **Golang**.
+* Backend and services: developed using serverless technology deployed in **Amazon Web Services Lambda** using **Node.js**.
+* Database: simple storage using JSON format in **Amazon Web Services S3**.
 
 ## Getting Started
 
-Para comenzar a usar el proyecto y poder jugar con él se tiene que hacer es clonar el repositorio bajo la carpeta *src* del workspace de Go de nuestro ordenador. 
+Let's get started with POCServerless! To start using the project and be able to play with it you have to clone the repository under the *src* folder of the Go workspace of your computer. 
 <br/>
-Antes de ejecutarlo debemos sustituir los valores falsos de AWS en el archivo de [credenciales](credentials.go) por los nuestros propios.
+You should also replace the false AWS values in the [credentials.go](credentials.go) file with your own.
 
 
-Acabados los pasos previos ya se puede ejecutar directamente:
+Once the previous steps have been completed, it is now possible to execute it: 
 ```
-go run main.go aws.go constants.go fakecredentials.go functions.go 
+go run main.go aws.go constants.go credentials.go functions.go 
 ```
-O construir un ejecutable y ejecutarlo posteriormente desde donde queramos:
+Or build an executable and run it later from wherever we want:
 ```
 go install POCServerless
 ```
-Típicamente este ejecutable se encuentra bajo la carpeta */bin* de nuestro workspace. Recordar que es muy útil incluir la carpeta */bin* en nuestro propio Path del ordenador y así tenemos acceso al ejecutable desde cualquier lugar:
+Typically this executable is located under the */bin* folder of our workspace. Remember that it is very useful to include the */bin* folder in our own path. So we have access to the executable from anywhere:
 ```
 POCServerless
 ```
@@ -31,13 +31,13 @@ POCServerless
 
 ### AWS prerequisites
 
-* Tener una cuenta en AWS y obtener sus credenciales (*id* and *secret*).
+* Create an AWS account and obtain your credentials (*id* and *secret*).
 
 ### Code prerequisites
 
-* Tener configurado todo el entorno de Go [Go Environment](https://golang.org/doc/code.html#Organization)
+* Setting up the Go environment [Go Environment](https://golang.org/doc/code.html#Organization).
 
-* Incluir la dependencia de [AWS](https://github.com/aws/aws-sdk-go) para Go:
+* Include [AWS](https://github.com/aws/aws-sdk-go) dependency for Go.
 
 ```
 go get github.com/aws/aws-sdk-go
@@ -45,15 +45,15 @@ go get github.com/aws/aws-sdk-go
 
 ## AWS Deployment
 
-1. **Crear un bucket privado de S3.** Importante quedarse con su nombre y su zona, necesistaremos configurarlo en las credenciales. 
+1. **Create a private S3 bucket.** It's important to keep their name and region name. We'll need to configure it later in the credentials. 
 
-2. **Incluir archivo de almacenamiento en S3.** Cargar el archivo [data.json](aws/data.json) dentro del bucket.
+2. **Include the storage file in S3.** Load the file [data.json](aws/data.json) into the bucket.
 
-3. **Crear un rol de ejecución en el servicio IAM.**  Este rol es para la ejecución Lambda. Los servicios que se deben permitir son S3 y CloudWatch Logs (solo para debug). 
+3. **Create an execution role in IAM service.** This role is for the Lambda execution. The services to be allowed are S3 and CloudWatch Logs (debug only). 
  
-4. **Crear las funciones Lambda.** Crear las funciones [saveWallet.js](aws/saveWallet.js) y [getWallet.js](aws/getWallet.js) dentro de Lambda usando el rol creado anteriormente. Importante sustituir el nombre de bucket existente en las funciones por el creado anteriormente.
+4. **Create the Lambda functions.** Create the functions [saveWallet.js](aws/saveWallet.js) and [getWallet.js](aws/getWallet.js) using the previously created role. It is important to replace the existing bucket name in the functions with the previously created one.
 
-5. **Sustituir creedenciales.** A parte de nuestro *idkey* y *secretkey* en [credentials.go](credentials.go) también debemos reemplazar los valores de arn de nuestras funciones Lambda y la región donde esten alojadas.
+5. **Replace credentials.** Besides our *idkey* and *secretkey* in [credentials.go](credentials.go) we also need to replace the arn values of our Lambda functions and the region name where they are hosted.
 
 ## Running
 ```
