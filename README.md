@@ -1,4 +1,4 @@
-# POC Serverless-Storage
+# PoC Serverless-Storage
 
 The aim of this project is to demonstrate how to achieve persistence within serverless technology in a simple way.
 <br/>
