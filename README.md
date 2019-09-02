@@ -2,12 +2,12 @@
 
 The aim of this project is to demonstrate how to achieve persistence within serverless technology in a simple way.
 <br/>
+This project is being used in the next **Medium [post](https://medium.com/@danios/getting-persistence-in-serverless-9a8608c66bf5)**.
+<br/>
 The application is based on a digital wallet in which we are storing coins. It consists of 3 parts:  
 * Interface and frontend: developed with **Golang**.
 * Backend and services: developed using serverless technology deployed in **Amazon Web Services Lambda** using **Node.js**.
 * Database: simple storage using JSON format in **Amazon Web Services S3**.
-<br/>
-This project is being used in the next **Medium** [post](https://medium.com/@danios/getting-persistence-in-serverless-9a8608c66bf5)
 
 ## Getting Started
 
